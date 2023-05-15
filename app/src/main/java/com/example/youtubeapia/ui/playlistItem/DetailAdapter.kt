@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.youtube.ui.playlist.loadImage
+import com.example.youtubeapia.core.viewext.loadImage
 import com.example.youtubeapia.databinding.ItemDetailBinding
 import com.example.youtubeapia.model.PlaylistItem
 

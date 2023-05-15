@@ -1,16 +1,18 @@
 package com.example.youtubeapia.ui.playlistItem
 
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.youtubeapia.base.BaseActivity
+import com.example.youtubeapia.core.ui.BaseActivity
 import com.example.youtubeapia.databinding.ActivityDetailBinding
 import com.example.youtubeapia.model.PlaylistItem
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
+
+@Suppress("UNCHECKED_CAST")
 class DetailActivity : BaseActivity<ActivityDetailBinding, PlaylistItemViewModel>() {
     private lateinit var adapter: DetailAdapter
-    override val viewModel: PlaylistItemViewModel by lazy {
-        ViewModelProvider(this)[PlaylistItemViewModel::class.java]
-    }
+
+    override val viewModel:  PlaylistItemViewModel by viewModel()
+
 
     override fun initViews() {
         super.initViews()
@@ -22,10 +24,10 @@ class DetailActivity : BaseActivity<ActivityDetailBinding, PlaylistItemViewModel
     override fun initViewModel() {
         super.initViewModel()
         val getIntent:String = intent.getStringExtra("id").toString()
-        viewModel.playlistItems(getIntent).observe(this) {
-            binding.recyclerView.adapter = adapter
-            adapter.addList(it.items!! as List<PlaylistItem.Item>)
+        viewModel.getPlaylistItem(getIntent).observe(this) {
+            it.data?.let { it1 -> adapter.addList(it1.items as List<PlaylistItem.Item>) }
         }
+
     }
 
     override fun inflateViewBinding(): ActivityDetailBinding {

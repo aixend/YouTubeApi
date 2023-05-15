@@ -4,7 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.playlist.PlaylistActivity">
+    tools:context=".ui.playlist.PlayListActivity">
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:id="@+id/progress_bar"
+        android:layout_height="wrap_content"/>
 
    <androidx.recyclerview.widget.RecyclerView
        android:id="@+id/recycler_view"

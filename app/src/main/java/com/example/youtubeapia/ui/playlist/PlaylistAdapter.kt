@@ -1,11 +1,11 @@
-package com.example.youtubeapia.ui
+package com.example.youtubeapia.ui.playlist
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.youtube.ui.playlist.loadImage
+import com.example.youtubeapia.core.viewext.loadImage
 import com.example.youtubeapia.databinding.ItemPlaylistBinding
 import com.example.youtubeapia.model.Playlist
 
@@ -13,7 +13,7 @@ class PlayListAdapter(private val onClick: (Playlist.Item) -> Unit) :
 RecyclerView.Adapter<PlayListAdapter.PlaylistViewHolder>() {
     private var list = arrayListOf<Playlist.Item>()
     @SuppressLint("NotifyDataSetChanged")
-    fun addList(list: List<Playlist.Item>) {
+    fun addList(list: List<Playlist.Item?>?) {
         this.list = list as ArrayList<Playlist.Item>
         notifyDataSetChanged()
     }

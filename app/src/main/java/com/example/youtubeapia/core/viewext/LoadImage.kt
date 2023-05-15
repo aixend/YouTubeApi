@@ -1,4 +1,4 @@
-package com.example.youtube.ui.playlist
+package com.example.youtubeapia.core.viewext
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide
