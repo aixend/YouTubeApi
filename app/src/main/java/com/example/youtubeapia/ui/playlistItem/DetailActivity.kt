@@ -1,12 +1,36 @@
 package com.example.youtubeapia.ui.playlistItem
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import com.example.youtubeapia.R
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.youtubeapia.base.BaseActivity
+import com.example.youtubeapia.databinding.ActivityDetailBinding
+import com.example.youtubeapia.model.PlaylistItem
 
-class DetailActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+class DetailActivity : BaseActivity<ActivityDetailBinding, PlaylistItemViewModel>() {
+    private lateinit var adapter: DetailAdapter
+    override val viewModel: PlaylistItemViewModel by lazy {
+        ViewModelProvider(this)[PlaylistItemViewModel::class.java]
     }
+
+    override fun initViews() {
+        super.initViews()
+        adapter = DetailAdapter()
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.adapter = adapter
+    }
+
+    override fun initViewModel() {
+        super.initViewModel()
+        val getIntent:String = intent.getStringExtra("id").toString()
+        viewModel.playlistItems(getIntent).observe(this) {
+            binding.recyclerView.adapter = adapter
+            adapter.addList(it.items!! as List<PlaylistItem.Item>)
+        }
+    }
+
+    override fun inflateViewBinding(): ActivityDetailBinding {
+        return ActivityDetailBinding.inflate(layoutInflater)
+    }
+
+
 }
