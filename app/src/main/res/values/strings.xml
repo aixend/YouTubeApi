@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">YouTubeApiA</string>
+    <string name="back">back</string>
+    <string name="playlist">playlist</string>
+    <string name="fab_button">FAB button</string>
+    <string name="todo">todo</string>
+</resources>
